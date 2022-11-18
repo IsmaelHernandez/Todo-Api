@@ -1,5 +1,4 @@
 // Los controller manejan todo sobre la BD
-
 //BD fisticia
 const todDB = []
 let id = 1

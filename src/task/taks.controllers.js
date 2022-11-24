@@ -1,10 +1,12 @@
 // Los controller manejan todo sobre la BD
 //BD fisticia
+const Task = require('../models/task.models')
 const todDB = []
 let id = 1
 
 const findAllTodo = () => {
-    return todDB
+    const data = Task.findAll()
+    return data
 }
 
 const findById = (id) => {

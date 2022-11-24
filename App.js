@@ -1,7 +1,8 @@
 //? Importamos express
 const express = require('express')
 //?Importamos las rutas
-const taskRouter = require('./task/tasks.routes')
+const taskRouter = require('./src/task/tasks.routes')
+const db = require('./src/utils/database')
 
 //? Definimos el puerto
 const port = 9000
@@ -18,6 +19,17 @@ app.get('/', function(req, res) {
 });
 
 app.use('/api', taskRouter)
+
+//Autenticar
+db.authenticate()
+    .then(() => console.log('Database Autenticada Correctamente'))
+    .catch((err) => console.log(err))
+
+
+//Sincronizar BD
+db.sync()
+    .then(() => console.log('Database Sincronizada Correctamente'))
+    .catch((err) => console.log(err))
 
 
 //?Configuracion del servidor

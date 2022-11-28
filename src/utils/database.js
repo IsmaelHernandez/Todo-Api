@@ -1,6 +1,7 @@
 // Importamos sequelize
 const {Sequelize} = require('sequelize')
 
+//conexion a la base de datos
 const db = new Sequelize({
     dialect: 'postgres',
     host: 'localhost',

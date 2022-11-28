@@ -20,13 +20,13 @@ app.get('/', function(req, res) {
 
 app.use('/api', taskRouter)
 
-//Autenticar
+//inf de la bd
 db.authenticate()
     .then(() => console.log('Database Autenticada Correctamente'))
     .catch((err) => console.log(err))
 
 
-//Sincronizar BD
+//Sincronizar BD y crear las tablas
 db.sync()
     .then(() => console.log('Database Sincronizada Correctamente'))
     .catch((err) => console.log(err))

@@ -1,34 +1,57 @@
 // Los controller manejan todo sobre la BD
-//BD fisticia
 const Task = require('../models/task.models')
-const todDB = []
-let id = 1
 
-const findAllTodo = () => {
-    const data = Task.findAll()
+
+const findAllTodo = async () => {
+    const data = await Task.findAll()
     return data
 }
 
-const findById = (id) => {
-    const todo = todDB.filter(item => item.id == id)
+const findById = async (id) => {
+    const todo = await Task.findOne({
+        where: {
+            id: id
+        }
+    })
     return todo
 }
 
+const patchTask = async(id) => {
 
-const createTodo = (obj) => {
-    const newTodo = {
-        id: id++,
-        title: obj.title,
-        description: obj.description,
-        is_completed: false
-    }
-    todDB.push(newTodo)
+}
+
+const createTodo = async (data) => {
+    const newTodo = await Task.create({
+        title: data.title,
+        description: data.description
+    })
     return newTodo
+}
+
+const updateTodo = async (id, data) => {
+    const response = await Task.update(data, {
+        where: {
+            id: id
+        }
+    })
+    return response
+}
+
+const deleteTodo = async (id) => {
+    const data = await Task.destroy({
+        where: {
+            id: id
+        }
+    })
+
+    return data
 }
 
 
 module.exports = {
     createTodo,
     findAllTodo,
-    findById
+    findById,
+    updateTodo,
+    deleteTodo,
 }
